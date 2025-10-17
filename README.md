@@ -35,4 +35,4 @@
    ```
 
 ## 装甲板检测和pnp解算
-![pnp](resource/pnp.png)
+![pnp](resource/pnp-solve.png)
