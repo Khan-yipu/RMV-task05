@@ -1,0 +1,8 @@
+armor_detector:
+  ros__parameters:
+    debug_mode: true
+    process_interval: 0.0
+    image_topic: "/image_raw"
+    result_topic: "/armor_detection_result"
+    enable_statistics: true
+    statistics_interval: 30

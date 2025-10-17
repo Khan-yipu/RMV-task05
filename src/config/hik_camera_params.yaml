@@ -1,0 +1,8 @@
+camera_driver:
+  ros__parameters:
+    exposure: 2000.0
+    image_gain: 16.9807
+    use_trigger: false
+    fps: 120.0
+    pixel_format_code: 17301513  # BayerRG8 pixel format
+    camera_frame: "camera_optical_frame"
