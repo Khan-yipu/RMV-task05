@@ -60,6 +60,20 @@ ament_target_dependencies(
   "OpenCV"
 )
 
+# ============ 视频装甲板识别节点 ============
+add_executable(video_armor_detect source/video_armor_detect.cpp)
+target_include_directories(video_armor_detect PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+target_compile_features(video_armor_detect PUBLIC c_std_99 cxx_std_17)
+ament_target_dependencies(
+  video_armor_detect
+  "rclcpp"
+  "sensor_msgs"
+  "cv_bridge"
+  "OpenCV"
+)
+
 # 安装模型文件
 # install(DIRECTORY models/
 #   DESTINATION share/${PROJECT_NAME}/models
@@ -68,6 +82,7 @@ ament_target_dependencies(
 install(TARGETS
   hik_camera_node
   armor_detector_node
+  video_armor_detect
   DESTINATION lib/${PROJECT_NAME})
 
 # Install launch files so ros2 launch can find them
