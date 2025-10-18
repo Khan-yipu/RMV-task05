@@ -10,8 +10,10 @@ class Config:
     NUM_CLASSES = 5
 
     # 图像尺寸配置 (20×28)
-    IMAGE_WIDTH = 28
-    IMAGE_HEIGHT = 20
+    # IMAGE_WIDTH = 28
+    # IMAGE_HEIGHT = 20
+    IMAGE_WIDTH = 20
+    IMAGE_HEIGHT = 28
     IMAGE_SIZE = (IMAGE_HEIGHT, IMAGE_WIDTH)  # (height, width)
 
     # 训练配置

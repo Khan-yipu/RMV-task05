@@ -134,7 +134,7 @@ class ArmorCNN(nn.Module):
     def __init__(self, num_classes=5):
         super(ArmorCNN, self).__init__()
 
-        # 第一个卷积块
+        # 增强的卷积块，使用残差连接
         self.conv1 = nn.Sequential(
             nn.Conv2d(3, 32, kernel_size=3, padding=1),
             nn.BatchNorm2d(32),
@@ -158,7 +158,7 @@ class ArmorCNN(nn.Module):
             nn.Dropout(0.25),
         )
 
-        # 第三个卷积块 - 修改这里！
+        # 第三个卷积块
         self.conv3 = nn.Sequential(
             nn.Conv2d(64, 128, kernel_size=3, padding=1),  # 128×5×7
             nn.BatchNorm2d(128),
@@ -166,14 +166,13 @@ class ArmorCNN(nn.Module):
             nn.Conv2d(128, 128, kernel_size=3, padding=1),  # 128×5×7
             nn.BatchNorm2d(128),
             nn.ReLU(inplace=True),
-            # 替换 AdaptiveAvgPool2d 为 AvgPool2d
-            nn.AvgPool2d(kernel_size=2, stride=2),  # 128×2×3
+            nn.MaxPool2d(2, 2),  # 128×2×3
             nn.Dropout(0.25),
         )
 
-        # 全连接层 - 更新输入尺寸
+        # 全连接层
         self.classifier = nn.Sequential(
-            nn.Linear(128 * 2 * 3, 256),  # 更新为 128*2*3
+            nn.Linear(128 * 2 * 3, 256),
             nn.ReLU(inplace=True),
             nn.Dropout(0.5),
             nn.Linear(256, 128),
@@ -230,7 +229,7 @@ class ArmorCNNLite(nn.Module):
             nn.Conv2d(32, 64, kernel_size=3, padding=1),  # 64×5×7
             nn.BatchNorm2d(64),
             nn.ReLU(inplace=True),
-            nn.AvgPool2d(kernel_size=2, stride=2),  # 64×2×3
+            nn.AdaptiveAvgPool2d((2, 3)),  # 64×2×3
         )
 
         self.classifier = nn.Sequential(
