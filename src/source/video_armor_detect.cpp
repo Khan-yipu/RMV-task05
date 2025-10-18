@@ -231,12 +231,6 @@ private:
         try {
             // 尝试加载模型
             std::string model_path = "/home/khanif/yipu/robomaster/wuhu5/armor_detect/model/outputs/models/best_model.onnx";
-            // 如果best_model.onnx不存在，尝试使用armor_digit.onnx
-            if (access(model_path.c_str(), F_OK) != 0) {
-                model_path = "/home/khanif/yipu/robomaster/wuhu5/armor_detect/hei/armor_detector/models/model/armor_digit.onnx";
-                RCLCPP_WARN(rclcpp::get_logger("armor_detector"), "best_model.onnx not found, trying to load armor_digit.onnx");
-            }
-
             net_ = cv::dnn::readNetFromONNX(model_path);
             if (net_.empty()) {
                 RCLCPP_ERROR(rclcpp::get_logger("armor_detector"), "Failed to load ONNX model from: %s", model_path.c_str());
