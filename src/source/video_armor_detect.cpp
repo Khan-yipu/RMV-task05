@@ -1,6 +1,6 @@
 // video_armor_detect.cpp
 //
-// stable but no number detected
+// stable
 // right resized and resized show
 
 #include "rclcpp/rclcpp.hpp"
